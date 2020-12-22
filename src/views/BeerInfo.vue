@@ -87,9 +87,11 @@ export default {
         for (let malt of maltsArr) {
           string += malt.slice(0, 1).toUpperCase() + malt.slice(1) + ', '
         }
+
         string = string.slice(0, -2)
-        if (string.length > 110) {
-          string = string.slice(0, 110) + '...'
+
+        if (string.length > 100) {
+          string = string.slice(0, 100) + '...'
         }
       }
 

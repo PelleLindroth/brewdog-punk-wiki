@@ -18,7 +18,8 @@ new Vue({
         searchInput: '',
 
       },
-      searchResults: []
+      searchResults: [],
+      tempParams: {}
     }
   },
   methods: {
@@ -59,6 +60,13 @@ new Vue({
     },
     setCurrentBeer(beer) {
       this.currentBeer = beer
+    },
+    setParams(params) {
+      this.tempParams = params
+      console.log(this.tempParams)
+    },
+    getParams() {
+      return this.tempParams
     },
     setSearchInput(string) {
       this.quickSearch.searchInput = string

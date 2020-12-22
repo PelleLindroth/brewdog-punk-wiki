@@ -128,7 +128,7 @@ form {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
-  min-height: 50rem;
+  min-height: 56rem;
   min-width: 79.6rem;
 }
 
@@ -190,7 +190,7 @@ button {
   font-size: 1.5rem;
   font-weight: 700;
   height: 4.1rem;
-  margin: 1rem auto;
+  margin: 3rem auto 4rem;
   outline: none;
   width: 21.2rem;
 }

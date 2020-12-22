@@ -17,6 +17,23 @@ import SearchForm from '../components/SearchForm'
 import SearchResults from '../components/SearchResults'
 
 export default {
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      if (from.name == 'Beer-Info') {
+        vm.showResults = true
+        let params = vm.$root.getParams()
+        vm.searchParams = params.search
+        vm.page = params.page
+      }
+    })
+  },
+  beforeRouteLeave(to, from, next) {
+    console.log(to.name)
+    if (to.name == 'Beer-Info') {
+      this.cacheParams()
+    }
+    next()
+  },
   components: {
     SearchForm,
     SearchResults,
@@ -39,6 +56,9 @@ export default {
       }
       await this.$root.fetchBeers(this.page, this.searchParams.slice(0, -1))
       this.showResults = true
+    },
+    cacheParams() {
+      this.$root.setParams({ search: this.searchParams, page: this.page })
     },
     async previousPage() {
       this.page--

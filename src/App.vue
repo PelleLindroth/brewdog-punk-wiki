@@ -3,7 +3,9 @@
     <router-link class="home-logo" to="/">
       <HomeLogo />
     </router-link>
-    <router-view />
+    <transition name="slide" mode="out-in">
+      <router-view />
+    </transition>
   </div>
 </template>
 
@@ -54,6 +56,16 @@ body {
     cursor: pointer;
     grid-column: 1;
     grid-row: 2;
+  }
+
+  .slide-enter-active,
+  .slide-leave-active {
+    transition: opacity 0.2s;
+  }
+
+  .slide-leave-to,
+  .slide-enter {
+    opacity: 0;
   }
 }
 </style>

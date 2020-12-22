@@ -69,16 +69,15 @@ export default {
   grid-row: 3 / span 7;
   display: flex;
   flex-direction: column;
+  margin-top: -1rem;
+  min-width: 79.6rem;
 }
 
 .search-results-container {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.search-results {
-  min-width: 79.6rem;
+  min-height: 46.4rem;
 }
 
 .nav-left,
