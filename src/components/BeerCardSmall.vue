@@ -1,10 +1,10 @@
 <template>
-  <div class="random-beer-card" :class="{ opaque: loadingBeer }">
-    <router-link
-      :to="`/beer-info/${beerId}`"
-      class="random-beer-image-container"
-      title="Learn more"
-    >
+  <router-link
+    :to="`/beer-info/${beerId}`"
+    class="random-beer-card"
+    :class="{ opaque: loadingBeer }"
+  >
+    <div class="random-beer-image-container" title="Learn more">
       <div v-show="loadingBeer" class="lds-ripple">
         <div></div>
         <div></div>
@@ -15,9 +15,9 @@
         :alt="`A bottle of ${beerName}`"
         class="random-beer-image"
       />
-    </router-link>
+    </div>
     <h2>{{ beerName }}</h2>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -39,13 +39,21 @@ export default {
 <style scoped>
 .random-beer-card {
   background-color: #eee;
-  cursor: default;
+  color: black;
+  cursor: pointer;
   display: flex;
   flex-direction: column;
   height: 21.2rem;
   margin: 1rem;
   width: 13.5rem;
+  opacity: 0.9;
   padding: 0.5rem;
+  text-decoration: none;
+}
+
+.random-beer-card:hover {
+  opacity: 1;
+  text-decoration: underline;
 }
 
 .opaque {
@@ -58,12 +66,7 @@ export default {
   display: flex;
   height: 11.2rem;
   justify-content: center;
-  opacity: 0.95;
   width: 12.5rem;
-}
-
-.random-beer-image-container:hover {
-  opacity: 1;
 }
 
 .random-beer-image {

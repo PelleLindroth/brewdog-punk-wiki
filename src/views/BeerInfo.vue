@@ -64,17 +64,13 @@ export default {
   beforeRouteEnter(to, from, next) {
     next(vm => {
       vm.backLink = from.path
-      console.log(vm.backLink)
     })
   },
-  // beforeRouteLeave(to, from, next) {
-  //   console.log(to.path)
-  //   console.log(from.path)
-  //   next()
-  //   // this.backLink = from.path
-  // },
   created() {
     this.beer = this.$root.findBeer(this.$route.params.id)
+    if (this.beer.description.length > 570) {
+      this.beer.description = this.beer.description.slice(0, 570) + '...'
+    }
   },
   computed: {
     altText() {
@@ -92,6 +88,9 @@ export default {
           string += malt.slice(0, 1).toUpperCase() + malt.slice(1) + ', '
         }
         string = string.slice(0, -2)
+        if (string.length > 110) {
+          string = string.slice(0, 110) + '...'
+        }
       }
 
       return string
@@ -109,6 +108,9 @@ export default {
         }
 
         string = string.slice(0, -2)
+        if (string.length > 110) {
+          string = string.slice(0, 110) + '...'
+        }
       }
 
       return string
@@ -118,7 +120,7 @@ export default {
     return {
       backLink: '/',
       beer: {},
-      cans: [73, 218, 226, 229, 230],
+      cans: [54, 73, 218, 226, 229, 230],
     }
   },
 }
@@ -186,9 +188,9 @@ export default {
   display: grid;
   grid-column: 3 / span 6;
   grid-row: 3 / span 4;
-  gap: 1rem;
+  gap: 0.5rem;
   grid-template-columns: repeat(6, 1fr);
-  grid-template-rows: repeat(auto-fill, 64px);
+  grid-template-rows: repeat(auto-fill, 16px);
 }
 
 .beer-info-card {
@@ -210,31 +212,31 @@ export default {
 
 .card-one {
   grid-column: 1 / span 3;
-  grid-row: 1;
+  grid-row: 1 / span 3;
 }
 
 .card-two {
   grid-column: 4 / span 3;
-  grid-row: 1;
+  grid-row: 1 / span 3;
 }
 
 .card-three {
   grid-column: 1 / span 3;
-  grid-row: 2;
+  grid-row: 4 / span 4;
 }
 
 .card-four {
   grid-column: 4 / span 3;
-  grid-row: 2;
+  grid-row: 4 / span 4;
 }
 
 .card-five {
   grid-column: 1 / span 3;
-  grid-row: 3 / span 2;
+  grid-row: 8 / span 7;
 }
 
 .card-six {
   grid-column: 4 / span 3;
-  grid-row: 3 / span 2;
+  grid-row: 8 / span 7;
 }
 </style>
