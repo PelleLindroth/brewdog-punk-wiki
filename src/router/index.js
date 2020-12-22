@@ -16,7 +16,11 @@ const routes = [
   {
     path: '/beer-info/:id',
     name: 'Beer-Info',
-    component: BeerInfo
+    component: BeerInfo,
+    // beforeEnter: (to, from, next) => {
+    //   console.log(next())
+    //   console.log(from.name)
+    // }
   },
   {
     path: '/advanced-search',

@@ -61,9 +61,18 @@
 
 <script>
 export default {
-  beforeRouteUpdate(to, from) {
-    this.backLink = from.path
+  beforeRouteEnter(to, from, next) {
+    next(vm => {
+      vm.backLink = from.path
+      console.log(vm.backLink)
+    })
   },
+  // beforeRouteLeave(to, from, next) {
+  //   console.log(to.path)
+  //   console.log(from.path)
+  //   next()
+  //   // this.backLink = from.path
+  // },
   created() {
     this.beer = this.$root.findBeer(this.$route.params.id)
   },
@@ -109,7 +118,7 @@ export default {
     return {
       backLink: '/',
       beer: {},
-      cans: [218, 226, 229, 230],
+      cans: [73, 218, 226, 229, 230],
     }
   },
 }

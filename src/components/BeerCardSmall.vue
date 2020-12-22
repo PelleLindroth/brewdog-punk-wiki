@@ -17,13 +17,6 @@
       />
     </router-link>
     <h2>{{ beerName }}</h2>
-    <button
-      v-show="randomButton"
-      class="new-random-beer-button"
-      @click="fetchBeer"
-    >
-      One more please
-    </button>
   </div>
 </template>
 
@@ -34,7 +27,6 @@ export default {
     beerId: Number,
     beerImgUrl: String,
     loadingBeer: Boolean,
-    randomButton: Boolean,
   },
   methods: {
     fetchBeer() {
@@ -50,12 +42,10 @@ export default {
   cursor: default;
   display: flex;
   flex-direction: column;
-  grid-column: 6 / span 2;
-  grid-row: 3 / span 6;
-  height: 38rem;
-  margin-left: -1rem;
-  width: 21.2rem;
-  padding: 1rem;
+  height: 21.2rem;
+  margin: 1rem;
+  width: 13.5rem;
+  padding: 0.5rem;
 }
 
 .opaque {
@@ -66,10 +56,10 @@ export default {
   align-items: center;
   background-color: #53adab;
   display: flex;
-  height: 19.2rem;
+  height: 11.2rem;
   justify-content: center;
   opacity: 0.95;
-  width: 19.2rem;
+  width: 12.5rem;
 }
 
 .random-beer-image-container:hover {
@@ -77,41 +67,15 @@ export default {
 }
 
 .random-beer-image {
-  height: 16rem;
+  height: 9.5rem;
 }
 
 .random-beer-card h2 {
   font-family: 'Yanone Kaffeesatz', sans-serif;
-  font-size: 2.4rem;
+  font-size: 1.8rem;
   min-height: 5rem;
   margin-top: 1rem;
-}
-
-.random-beer-info-link {
-  align-self: center;
-  align-items: center;
-  cursor: pointer;
-  display: flex;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.4rem;
-  margin-top: auto;
-}
-
-.new-random-beer-button {
-  align-items: center;
-  background-color: #3298af;
-  border: none;
-  color: white;
-  cursor: pointer;
-  display: flex;
-  font-family: 'Roboto', sans-serif;
-  font-size: 1.3rem;
-  font-weight: 500;
-  height: 4.4rem;
-  justify-content: center;
-  margin-top: auto;
-  outline: none;
-  width: 19.2rem;
+  /* margin-right: auto; */
 }
 
 .lds-ripple {

@@ -1,34 +1,54 @@
 <template>
-  <div class="search-results-wrapper">
-    <div class="nav-left">
-      <img
-        v-if="page > 1"
-        src="../assets/large-arrow-left.svg"
-        alt="Arrow pointing left"
-        @click="previousPage"
-      />
-    </div>
+  <div class="search-results-view">
     <div class="search-results-container">
-      <ul class="results-list">
-        <li class="beer-card" v-for="result in searchResults" :key="result.id">
-          {{ result.name }}
-        </li>
-      </ul>
+      <div class="nav-left">
+        <img
+          v-if="page > 1"
+          src="../assets/large-arrow-left.svg"
+          alt="Arrow pointing left"
+          @click="previousPage"
+        />
+      </div>
+      <div class="search-results">
+        <ul class="results-list">
+          <BeerCardSmall
+            v-for="beer in searchResults"
+            :key="beer.id"
+            :beerName="beer.name"
+            :beerId="beer.id"
+            :beerImgUrl="
+              beer.image_url
+                ? beer.image_url
+                : require('../assets/no_image.svg')
+            "
+            :loadingBeer="beer.loadingBeer"
+          />
+        </ul>
+      </div>
+      <div class="nav-right">
+        <img
+          v-if="searchResults.length > 9"
+          src="../assets/large-arrow-right.svg"
+          alt="Arrow pointing right"
+          @click="nextPage"
+        />
+      </div>
     </div>
-    <div class="nav-right">
-      <img
-        v-if="searchResults.length > 9"
-        src="../assets/large-arrow-right.svg"
-        alt="Arrow pointing right"
-        @click="nextPage"
-      />
-    </div>
+    <button @click="backToForm">BACK TO SEARCH</button>
   </div>
 </template>
 
 <script>
+import BeerCardSmall from './BeerCardSmall'
+
 export default {
+  components: {
+    BeerCardSmall,
+  },
   methods: {
+    backToForm() {
+      this.$emit('backToForm')
+    },
     previousPage() {
       this.$emit('previousPage')
     },
@@ -43,16 +63,21 @@ export default {
 }
 </script>
 
-<style scoped>
-.search-results-wrapper {
+<style lang="scss" scoped>
+.search-results-view {
   grid-column: 3 / span 8;
   grid-row: 3 / span 7;
+  display: flex;
+  flex-direction: column;
+}
+
+.search-results-container {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.search-results-container {
+.search-results {
   min-width: 79.6rem;
 }
 
@@ -72,14 +97,18 @@ export default {
   min-width: 79.6rem;
 }
 
-.beer-card {
-  background-color: #eee;
-  cursor: default;
-  display: flex;
-  flex-direction: column;
-  height: 21.2rem;
-  margin: 0.5rem;
-  width: 13.5rem;
-  padding: 1rem;
+button {
+  background-color: #3298af;
+  border: none;
+  box-shadow: 0 4px 15px -4px rgba(0, 0, 0, 0.25);
+  color: white;
+  cursor: pointer;
+  font-family: 'Roboto', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  min-height: 4.1rem;
+  margin: 1rem auto;
+  outline: none;
+  width: 21.2rem;
 }
 </style>

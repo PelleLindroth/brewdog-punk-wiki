@@ -7,6 +7,7 @@
       :searchResults="this.$root.searchResults"
       @previousPage="previousPage"
       @nextPage="nextPage"
+      @backToForm="showResults = false"
     />
   </div>
 </template>

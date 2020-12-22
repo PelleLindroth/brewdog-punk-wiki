@@ -11,6 +11,7 @@
           : require('../assets/no_image.svg')
       "
       :loadingBeer="this.$root.loadingBeer"
+      :randomButton="true"
       @fetchBeer="this.$root.fetchRandomBeer"
     />
   </div>
