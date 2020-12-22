@@ -58,9 +58,6 @@ new Vue({
     getCurrentBeer() {
       return this.currentBeer
     },
-    setCurrentBeer(beer) {
-      this.currentBeer = beer
-    },
     setParams(params) {
       this.tempParams = params
       console.log(this.tempParams)
