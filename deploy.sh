@@ -10,6 +10,6 @@ git init
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:PelleLindroth/brewdog-punk-wiki.git master:gh-pages
+git push -f git@github.com:pellelindroth/brewdog-punk-wiki.git master:gh-pages
 
 cd -
