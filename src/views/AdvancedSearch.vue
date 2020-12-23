@@ -54,6 +54,11 @@ export default {
           this.searchParams += `${query}=${value}&`
         }
       }
+
+      if (this.searchParams != this.$root.tempParams) {
+        this.page = 1
+      }
+
       await this.$root.fetchBeers(this.page, this.searchParams.slice(0, -1))
       this.showResults = true
     },
