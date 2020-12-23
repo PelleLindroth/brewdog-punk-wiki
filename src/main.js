@@ -27,6 +27,8 @@ new Vue({
       for (let beer of beers) {
         this.beers.push(beer)
       }
+
+      this.beers = this.beers.filter((beer, pos, arr) => arr.map(mapBeer => mapBeer.id).indexOf(beer.id) === pos)
     },
     async fetchBeers(page, searchPhrase) {
       this.quickSearch.page = page
@@ -40,9 +42,15 @@ new Vue({
         url = `https://api.punkapi.com/v2/beers?page=${page}&per_page=10&${searchPhrase}`
       }
 
-      let res = await fetch(url)
-      this.searchResults = await res.json()
-      this.cacheBeers(this.searchResults)
+      if (localStorage.getItem(url)) {
+        this.searchResults = JSON.parse(localStorage.getItem(url))
+        this.cacheBeers(this.searchResults)
+      } else {
+        let res = await fetch(url)
+        this.searchResults = await res.json()
+        localStorage.setItem(url, JSON.stringify(this.searchResults))
+        this.cacheBeers(this.searchResults)
+      }
     },
     async fetchRandomBeer() {
       this.loadingBeer = true
@@ -60,7 +68,6 @@ new Vue({
     },
     setParams(params) {
       this.tempParams = params
-      console.log(this.tempParams)
     },
     getParams() {
       return this.tempParams
@@ -76,4 +83,4 @@ new Vue({
   },
   router,
   render: h => h(App)
-}).$mount('#app')
+}).$mount('#app') 
