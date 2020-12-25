@@ -1,24 +1,13 @@
 # brewdog-punk-wiki
 
-## Project setup
-```
-npm install
-```
+### School project in the native javascript course, rewritten in Vue.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+#### Assignment
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Build a beer wiki that uses the Brewdog Punk API at https://punkapi.com/documentation/v2.
 
-### Lints and fixes files
-```
-npm run lint
-```
+Should contain three different views, a random beer generator, a beer-info page and an advanced search page.
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Link to published project:
+
+https://pellelindroth.github.io/brewdog-punk-wiki/
