@@ -1,6 +1,11 @@
 <template>
   <div class="advanced-search-view">
-    <SearchForm v-if="!showResults" @search="advancedSearch" />
+    <SearchForm
+      v-if="!showResults"
+      :params="params"
+      @clearForm="clearSearchObject"
+      @search="advancedSearch"
+    />
     <SearchResults
       v-if="showResults"
       :page="page"
@@ -28,7 +33,6 @@ export default {
     })
   },
   beforeRouteLeave(to, from, next) {
-    console.log(to.name)
     if (to.name == 'Beer-Info') {
       this.cacheParams()
     }
@@ -37,6 +41,11 @@ export default {
   components: {
     SearchForm,
     SearchResults,
+  },
+  computed: {
+    params() {
+      return this.$root.getSearchObject()
+    },
   },
   data() {
     return {
@@ -48,6 +57,7 @@ export default {
   methods: {
     async advancedSearch(searchObject) {
       this.searchParams = ''
+      this.$root.setSearchObject(searchObject)
 
       for (let [query, value] of Object.entries(searchObject)) {
         if (value) {
@@ -65,6 +75,9 @@ export default {
     cacheParams() {
       this.$root.setParams({ search: this.searchParams, page: this.page })
     },
+    clearSearchObject() {
+      this.$root.clearSearchObject()
+    },
     async previousPage() {
       this.page--
       await this.$root.fetchBeers(this.page, this.searchParams.slice(0, -1))
@@ -77,15 +90,22 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+$mobile-cutoff: 650px;
+
 .advanced-search-view {
   grid-column: 1 / span 12;
-  grid-row: 2 / span 10;
+  grid-row: 1 / span 10;
   display: grid;
   gap: 1rem;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(auto-fill, 64px);
   height: 100%;
   margin: auto;
+
+  @media screen and (max-width: $mobile-cutoff) {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(auto-fill, 32px);
+  }
 }
 </style>

@@ -44,18 +44,28 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
+$mobile-cutoff: 650px;
+
 .random-beer-card {
   background-color: #eee;
   cursor: default;
   display: flex;
   flex-direction: column;
   grid-column: 6 / span 2;
-  grid-row: 3 / span 6;
+  grid-row: 2 / span 6;
   height: 38rem;
   margin-left: -1rem;
   width: 21.2rem;
   padding: 1rem;
+
+  @media screen and (max-width: $mobile-cutoff) {
+    box-shadow: 0 4px 4px -4px rgba(0, 0, 0, 0.5);
+    height: 34rem;
+    margin: 0;
+    place-self: center;
+    grid-row: 5;
+  }
 }
 
 .opaque {

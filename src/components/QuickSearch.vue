@@ -10,7 +10,7 @@
       />
       <img
         src="../assets/close-icon.svg"
-        alt="Capital X"
+        alt="Clear Search"
         class="clear-input"
         title="Clear search"
         @click="clearInput"
@@ -23,7 +23,7 @@
       class="advanced-search-button"
       title="Search by specifics"
     >
-      Advanced Search
+      {{ this.$root.isMobile ? 'SEARCH' : 'Advanced Search' }}
     </router-link>
     <div v-if="searchString.length > 2" class="search-results-container">
       <nav v-if="page > 1" class="next-page-nav">
@@ -102,31 +102,41 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$mobile-cutoff: 650px;
+
 .search-container {
   align-items: flex-end;
   display: flex;
   flex-direction: column;
-  grid-column: 11 / span 2;
-  grid-row: 1;
 }
 
 .input-container {
   background: #fff;
   display: flex;
+
+  @media screen and (max-width: $mobile-cutoff) {
+    display: none;
+  }
 }
 
 .search-input {
   border: none;
   font-family: 'Roboto', sans-serif;
   height: 3.2rem;
+  min-width: 15.6rem;
   outline: none;
-  padding: 10px;
-  width: 15.6rem;
+  padding: 1rem;
+  position: relative;
 }
 
 .clear-input {
   cursor: pointer;
   padding: 1rem;
+
+  @media screen and (max-width: $mobile-cutoff) {
+    padding: 0.5rem;
+    width: 2rem;
+  }
 }
 
 .advanced-search-button {
@@ -137,15 +147,31 @@ export default {
   font-family: 'Yanone Kaffeesatz', sans-serif;
   font-size: 1.2rem;
   outline: none;
-  margin-top: 5px;
+  margin-top: 0.5rem;
   text-align: right;
+
+  @media screen and (max-width: $mobile-cutoff) {
+    border: 1px solid #fff;
+    border-radius: 3px;
+    color: #fff;
+    font-size: 1.2rem;
+    font-weight: 700;
+    padding: 0.8rem 2rem 0.6rem;
+  }
 }
 
 .search-results-container {
-  margin-top: 2rem;
+  top: 10rem;
+  z-index: 2;
+  position: absolute;
+
+  @media screen and (max-width: $mobile-cutoff) {
+    display: none;
+  }
+
   ul {
     list-style: none;
-    margin-top: 2rem;
+    margin: 1.5rem 0;
 
     li {
       color: white;
