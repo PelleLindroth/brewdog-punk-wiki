@@ -18,8 +18,26 @@ new Vue({
         searchInput: '',
 
       },
+      searchObject: {
+        beer_name: '',
+        abv_gt: '',
+        abv_lt: '',
+        ebc_gt: '',
+        ebcMax: '',
+        brewed_after: '2000-01',
+        brewed_before: '2020-01',
+        ibu_gt: '',
+        ibu_lt: '',
+        malt: '',
+        hops: '',
+        yeast: '',
+        food: '',
+      },
       searchResults: [],
-      tempParams: {}
+      tempParams: {},
+      isMobile: /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      )
     }
   },
   methods: {
@@ -80,6 +98,29 @@ new Vue({
         this.quickSearch.page = 1
       }
     },
+    clearSearchObject() {
+      this.searchObject = {
+        beer_name: '',
+        abv_gt: '',
+        abv_lt: '',
+        ebc_gt: '',
+        ebcMax: '',
+        brewed_after: '2000-01',
+        brewed_before: '2020-01',
+        ibu_gt: '',
+        ibu_lt: '',
+        malt: '',
+        hops: '',
+        yeast: '',
+        food: '',
+      }
+    },
+    getSearchObject() {
+      return this.searchObject
+    },
+    setSearchObject(object) {
+      this.searchObject = object
+    }
   },
   router,
   render: h => h(App)
